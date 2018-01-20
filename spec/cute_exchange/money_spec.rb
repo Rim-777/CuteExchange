@@ -118,13 +118,12 @@ RSpec.describe Money do
         expect(fifty_eur.send(:perform_arithmetic, :*, 2)).to eq Money.new(100, 'EUR')
       end
 
-      it "returns a new Money instans and doesn't change the initial instance" do
-        fifty_eur.send(:perform_arithmetic, :+, 50)
-        expect(fifty_eur.amount).to eq 50
+      it_behaves_like 'Unchangeble' do
+        let(:argument) {100}
       end
     end
 
-    context 'the money instance as an arument' do
+    context 'the Money instance as an arument' do
       it 'gets an operation and a money instanse and performs the operation' do
         expect(fifty_eur.send(:perform_arithmetic, :+, Money.new(100, 'EUR')))
             .to eq Money.new(150, 'EUR')
@@ -132,31 +131,22 @@ RSpec.describe Money do
             .to eq Money.new(20, 'EUR')
       end
 
-      it "returns a new Money instans and doesn't change the initial instance" do
-        fifty_eur.send(:perform_arithmetic, :+, Money.new(100, 'EUR'))
-        expect(fifty_eur.amount).to eq 50
+      it_behaves_like 'Unchangeble' do
+        let(:argument) {Money.new(100, 'EUR')}
       end
     end
   end
 
   describe '#arithmetic methods :+,:-,:/, :*' do
     context 'the number as an argument' do
-      it 'receives the perform_arithmetic method for the money instance' do
-        [:+, :-, :/, :*].each do |operation|
-          expect(fifty_eur).to receive(:perform_arithmetic).with(operation, 50).and_call_original
-          fifty_eur.send(operation, 50)
-        end
+      it_behaves_like 'Arithmeticable' do
+        let(:argument) {50}
       end
     end
 
-    context 'the money instance as an argument' do
-      let(:argument) {Money.new(50, 'USD')}
-
-      it 'receives the perform_arithmetic method for the money instance' do
-        [:+, :-, :/, :*].each do |operation|
-          expect(fifty_eur).to receive(:perform_arithmetic).with(operation, argument).and_call_original
-          fifty_eur.send(operation, argument)
-        end
+    context 'the Money instance as an argument' do
+      it_behaves_like 'Arithmeticable' do
+        let(:argument) {Money.new(50, 'USD')}
       end
     end
   end

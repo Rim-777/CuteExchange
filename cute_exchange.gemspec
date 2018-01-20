@@ -15,10 +15,9 @@ Gem::Specification.new do |spec|
       "lib/cute_exchange/money.rb"
   ]
 
-  spec.add_runtime_dependency 'bigdecimal'
+  spec.add_runtime_dependency 'bigdecimal', '~> 1.2', '>= 1.2.7'
 
   spec.requirements = %w{
-  Internet\ connection
   Good\ mood
   A\little\ courage
   }

@@ -21,7 +21,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bigdecimal
+  bigdecimal (~> 1.2, >= 1.2.7)
   rspec
 
 RUBY VERSION

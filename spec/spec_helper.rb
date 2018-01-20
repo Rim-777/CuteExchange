@@ -1,6 +1,7 @@
 require 'rspec'
 
 Dir["#{File.expand_path('../lib/**/', __dir__)}/*.rb"].each {|f|  require f }
+Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
