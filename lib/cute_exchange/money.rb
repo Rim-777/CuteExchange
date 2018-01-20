@@ -30,6 +30,22 @@ class Money
     "#{"%.#{precision}f" % amount} #{currency}"
   end
 
+  def + arg
+    perform_arithmetic(__method__, arg)
+  end
+
+  def - arg
+    perform_arithmetic(__method__, arg)
+  end
+
+  def / arg
+    perform_arithmetic(__method__, arg)
+  end
+
+  def * arg
+    perform_arithmetic(__method__, arg)
+  end
+
   def <=>(arg)
     BigDecimal(amount.to_s)  <=> BigDecimal(arg.convert_to(currency).amount.to_s)
   end
@@ -42,5 +58,11 @@ class Money
 
   def rate_by(currency)
     Money.rates.fetch(currency)
+  end
+
+  def perform_arithmetic(operation, arg)
+    converted_amount = arg.is_a?(Numeric) ? arg : arg.convert_to(currency).amount
+    new_amount = BigDecimal(amount.to_s).send(operation, BigDecimal(converted_amount.to_s))
+    self.class.new(new_amount, currency)
   end
 end
