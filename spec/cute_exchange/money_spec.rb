@@ -108,4 +108,16 @@ RSpec.describe Money do
       expect(fifty_eur.send(:rate_by, 'RUB')).to eq 70
     end
   end
+
+  describe '#comparisons' do
+    let(:twenty_dollars) {Money.new(20, 'USD')}
+
+    it 'makes the right comparisons' do
+      expect(twenty_dollars < fifty_eur).to be_truthy
+      expect(twenty_dollars != fifty_eur).to be_truthy
+      expect(twenty_dollars >= fifty_eur).to be_falsey
+      expect(fifty_eur == fifty_eur).to be_truthy
+      expect(fifty_five_dollars_fifty_cent == fifty_eur).to be_truthy
+    end
+  end
 end
