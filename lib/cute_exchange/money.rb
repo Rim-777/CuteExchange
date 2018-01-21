@@ -63,6 +63,6 @@ class Money
   def perform_arithmetic(operation, arg)
     converted_amount = arg.is_a?(Numeric) ? arg : arg.convert_to(currency).amount
     new_amount = BigDecimal(amount.to_s).send(operation, BigDecimal(converted_amount.to_s))
-    self.class.new(new_amount, currency)
+    self.class.new(new_amount.to_s('F'), currency)
   end
 end
