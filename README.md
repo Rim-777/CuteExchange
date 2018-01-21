@@ -17,11 +17,11 @@ The simple way to implement the money conversion in your Ruby project
 #### Or add  the following line to your Gemfile :
    ```shell
       gem 'cute_exchange'
-      Then run:  bundle install
+      #Then run:  bundle install
    ```
 #### Usage:
  `````shell
-      require 'cute_exchang'
+      require 'cute_exchange'
       
       # Set the currency rates with respect to a base currency:
       CuteExchange.conversion_rates('EUR', {
