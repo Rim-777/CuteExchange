@@ -2,7 +2,7 @@ Gem::Specification.new do |spec|
   spec.name            = 'cute_exchange'
   spec.version         = '1.0.1'
   spec.date            = '2018-01-20'
-  spec.summary         = 'Gem fo the money conversion'
+  spec.summary         = 'Gem for the money conversion'
   spec.authors         = ["Timo Moss"]
   spec.description     = 'implement the money conversion in your Ruby project'
 
